@@ -8,23 +8,28 @@ import { authenticate } from '../../components/authenticate';
 
 function Navbar({ walletAddress, setWalletAddress }) {
   const connectWallet = async () => {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);  
-    console.log(provider);
+    try{
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);  
+      console.log(provider);
 
-    const signer = provider.getSigner();
-    console.log(signer);
-    const address = await signer.getAddress();
-    console.log(address);
-    setWalletAddress(address);
+      const signer = provider.getSigner();
+      console.log(signer);
+      const address = await signer.getAddress();
+      console.log(address);
+      setWalletAddress(address);
 
-    const challengeResponse = await generateChallenge(address);
-    const signature = await signer.signMessage(challengeResponse.data.challenge.text)
-    console.log(signature);
+      const challengeResponse = await generateChallenge(address);
+      const signature = await signer.signMessage(challengeResponse.data.challenge.text)
+      console.log(signature);
 
-    const res = await authenticate(address, signature);
-    console.log(res);
+      const res = await authenticate(address, signature);
+      console.log(res);
+      localStorage.setItem("auth_token", res.data.authenticate.accessToken);
+    } catch(error) {
+      console.error(error);
+    }  
   }
 
   return (
