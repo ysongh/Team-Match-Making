@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Test from './components/Test';
+import Navbar from './components/layout/Navbar';
 import './App.css';
 
 function App() {
+  const [walletAddress, setWalletAddress] = useState('');
+
   return (
     <div >
-      Team Match Making
-      <Test />
+      <Navbar
+        walletAddress={walletAddress}
+        setWalletAddress={setWalletAddress}/>
     </div>
   );
 }
