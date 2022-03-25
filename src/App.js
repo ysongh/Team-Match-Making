@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
 import './App.css';
@@ -7,11 +8,21 @@ function App() {
   const [walletAddress, setWalletAddress] = useState('');
 
   return (
-    <div >
+     <HashRouter>
       <Navbar
         walletAddress={walletAddress}
         setWalletAddress={setWalletAddress}/>
-    </div>
+      <Routes>
+        <Route
+          path="/test"
+          element={
+            <h1>Test</h1>} />
+        <Route
+          path="/"
+          element={
+            <h1>Home</h1>} />
+      </Routes>
+    </HashRouter>
   );
 }
 
