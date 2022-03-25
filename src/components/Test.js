@@ -5,7 +5,8 @@ import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 
 import { apolloClient } from './apollo-client';
-import { generateChallenge } from './generate-challenge'
+import { generateChallenge } from './generate-challenge';
+import { authenticate } from './authenticate';
 
 function Test() {
   useEffect(() => {
@@ -39,6 +40,9 @@ function Test() {
     const challengeResponse = await generateChallenge(address);
     const signature = await signer.signMessage(challengeResponse.data.challenge.text)
     console.log(signature);
+
+    const res = await authenticate(address, signature);
+    console.log(res);
   }
   
   return (
