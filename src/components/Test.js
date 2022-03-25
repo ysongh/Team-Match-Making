@@ -46,8 +46,8 @@ function Test() {
   }
   
   return (
-    <div>
-      <button onClick={connect}>Connect</button>
+    <div className='container'>
+      <button className='btn btn-primary' onClick={connect}>Connect</button>
     </div>
   )
 }
