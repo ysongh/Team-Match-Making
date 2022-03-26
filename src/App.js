@@ -17,7 +17,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Profile />} />
+            <Profile walletAddress={walletAddress} />} />
         <Route
           path="/"
           element={
