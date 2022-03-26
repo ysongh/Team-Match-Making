@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
+import Home from './pages/Home';
 import Profile from './pages/Profile';
 import './App.css';
 
@@ -21,7 +22,7 @@ function App() {
         <Route
           path="/"
           element={
-            <h1>Home</h1>} />
+            <Home />} />
       </Routes>
     </HashRouter>
   );
