@@ -6,6 +6,7 @@ import Web3Modal from 'web3modal';
 import { generateChallenge } from '../../components/generate-challenge';
 import { authenticate } from '../../components/authenticate';
 
+
 function Navbar({ walletAddress, setWalletAddress }) {
   const connectWallet = async () => {
     try{
@@ -45,7 +46,7 @@ function Navbar({ walletAddress, setWalletAddress }) {
               <Link className="nav-link" aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/test">Test</Link>
+              <Link className="nav-link" aria-current="page" to="/profile">Profile</Link>
             </li>
           </ul>
           <button className="btn btn-outline-success" type="submit"  onClick={connectWallet}>

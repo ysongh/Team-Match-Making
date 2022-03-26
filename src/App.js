@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
+import Profile from './pages/Profile';
 import './App.css';
 
 function App() {
@@ -14,9 +15,9 @@ function App() {
         setWalletAddress={setWalletAddress}/>
       <Routes>
         <Route
-          path="/test"
+          path="/profile"
           element={
-            <h1>Test</h1>} />
+            <Profile />} />
         <Route
           path="/"
           element={
