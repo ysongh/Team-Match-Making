@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
+import MyPosts from './pages/MyPosts';
 import Profile from './pages/Profile';
 import './App.css';
 
@@ -15,6 +16,10 @@ function App() {
         walletAddress={walletAddress}
         setWalletAddress={setWalletAddress}/>
       <Routes>
+        <Route
+          path="/my-posts"
+          element={
+            <MyPosts />} />
         <Route
           path="/profile"
           element={

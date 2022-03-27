@@ -46,6 +46,9 @@ function Navbar({ walletAddress, setWalletAddress }) {
               <Link className="nav-link" aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/my-posts">My Posts</Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/profile">Profile</Link>
             </li>
           </ul>
