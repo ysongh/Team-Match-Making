@@ -26,7 +26,7 @@ function Home() {
       profileId: "0x0295",
       contentURI: "ipfs://QmZJTaXfWxRVX33drEYHjKUksrahFdzgZ5pevd94sskLwn.json",
       collectModule: {
-        revertCollectModule: true
+        emptyCollectModule: true
       },
       referenceModule: {
         followerOnlyReferenceModule: false
@@ -41,12 +41,15 @@ function Home() {
     <div className='container'>
       <button onClick={createPost}>Create Post</button>
       {posts.map(post => (
-        <div key={post.id}>
-          <h2>
+        <div className="card mb-3" key={post.id}>
+          <div className="card-header">
             {post.metadata.name}
-          </h2>
-          <p>{post.metadata.content}</p>
-          <p>{post.createdAt}</p>
+          </div>
+          <div className="card-body">
+            <h5 className="card-title">{post.createdAt}</h5>
+            <p className="card-text">{post.metadata.content}</p>
+            <a href="#" className="btn btn-primary">View</a>
+          </div>
         </div>
       ))}
     </div>
