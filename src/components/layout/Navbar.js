@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 import Web3Modal from 'web3modal';
 import { generateChallenge } from '../../components/generate-challenge';
 import { authenticate } from '../../components/authenticate';
 
-
 function Navbar({ walletAddress, setWalletAddress }) {
+  const navigate = useNavigate();
+
   const connectWallet = async () => {
     try{
       const web3Modal = new Web3Modal();
@@ -28,6 +29,7 @@ function Navbar({ walletAddress, setWalletAddress }) {
       const res = await authenticate(address, signature);
       console.log(res);
       localStorage.setItem("auth_token", res.data.authenticate.accessToken);
+      navigate('/profile');
     } catch(error) {
       console.error(error);
     }  
@@ -48,9 +50,9 @@ function Navbar({ walletAddress, setWalletAddress }) {
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/my-posts">My Posts</Link>
             </li>
-            <li className="nav-item">
+            {walletAddress && <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/profile">Profile</Link>
-            </li>
+            </li>}
           </ul>
           <button className="btn btn-outline-success" type="submit"  onClick={connectWallet}>
             {walletAddress ? walletAddress.substring(0,8) + "..." + walletAddress.substring(34,42) : "Connect to Wallet"}
