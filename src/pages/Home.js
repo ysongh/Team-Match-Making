@@ -39,7 +39,12 @@ function Home() {
 
   return (
     <div className='container'>
-      <button onClick={createPost}>Create Post</button>
+      <div className='d-flex justify-content-between mb-4'>
+        <h1>List of Posts</h1>
+        <button className='btn btn-primary' onClick={createPost}>
+          Create Post
+        </button>
+      </div>
       {posts.map(post => (
         <div className="card mb-3" key={post.id}>
           <div className="card-header">

@@ -38,7 +38,7 @@ function Navbar({ walletAddress, setWalletAddress }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <Link className="navbar-brand" to="/">Team Match Making</Link>
+        <Link className="navbar-brand" to="/">Simple Blog using Lens</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

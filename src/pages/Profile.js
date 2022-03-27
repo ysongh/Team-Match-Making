@@ -78,9 +78,8 @@ function Profile({ walletAddress }) {
      
       {isEdit
         ? <EditProfileForm profile={profile} update={update} />
-        : <UserProfile />
+        : !profile?.id ? <CreateProfileForm create={create} /> : <UserProfile />
       }
-      {!profile.id &&<CreateProfileForm create={create} />}
       
     </div>
   )
