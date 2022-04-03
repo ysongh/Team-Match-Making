@@ -48,10 +48,17 @@ function Profile({ walletAddress }) {
       coverPicture: null
     };
 
-    const profile = await updateProfile(newProfile);
-    console.log(profile);
+    await updateProfile(newProfile);
+
+    let domProfile = { ...profile };
+    domProfile.name = _name;
+    domProfile.bio = _bio;
+    domProfile.location = _location;
+    domProfile.website = _website;
+    domProfile.twitterUrl = _twitterUrl;
+    domProfile.coverPicture = null;
+    setProfile(domProfile);
     setIsEdit(false);
-    fetchProfiles();
   }
 
   const UserProfile = () => {
