@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 import Web3Modal from 'web3modal';
-import { generateChallenge } from '../../components/generate-challenge';
-import { authenticate } from '../../components/authenticate';
+import { generateChallenge } from '../../components/lensAPI/generate-challenge';
+import { authenticate } from '../../components/lensAPI/authenticate';
 
 function Navbar({ walletAddress, setWalletAddress }) {
   const navigate = useNavigate();

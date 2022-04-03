@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { explorePublications } from '../components/explore-publications';
-import { createPostTypedData } from '../components/create-post-typed-data';
+import { explorePublications } from '../components/lensAPI/explore-publications';
+import { createPostTypedData } from '../components/lensAPI/create-post-typed-data';
 
 function Home() {
   const [posts, setPosts] = useState([]);

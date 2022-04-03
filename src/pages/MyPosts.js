@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { getPublications } from '../components/get-publications';
+import { getPublications } from '../components/lensAPI/get-publications';
 
 function MyPosts() {
   const [posts, setPosts] = useState([]);

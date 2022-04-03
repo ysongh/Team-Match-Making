@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import CreateProfileForm from '../components/profile/CreateProfileForm';
 import EditProfileForm from '../components/profile/EditProfileForm';
-import { createProfile } from '../components/create-profile';
-import { updateProfile } from '../components/update-profile';
-import { getProfiles } from '../components/get-profiles';
+import { createProfile } from '../components/lensAPI/create-profile';
+import { updateProfile } from '../components/lensAPI/update-profile';
+import { getProfiles } from '../components/lensAPI/get-profiles';
 
 function Profile({ walletAddress }) {
   const [profile, setProfile] = useState({});
