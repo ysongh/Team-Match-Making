@@ -9,12 +9,14 @@ import './App.css';
 
 function App() {
   const [walletAddress, setWalletAddress] = useState('');
+  const [userSigner, setUserSigner] = useState(null);
 
   return (
      <HashRouter>
       <Navbar
         walletAddress={walletAddress}
-        setWalletAddress={setWalletAddress}/>
+        setWalletAddress={setWalletAddress}
+        setUserSigner={setUserSigner} />
       <Routes>
         <Route
           path="/my-posts"
@@ -27,7 +29,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Home />} />
+            <Home userSigner={userSigner} />} />
       </Routes>
     </HashRouter>
   );

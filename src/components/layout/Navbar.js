@@ -6,7 +6,7 @@ import Web3Modal from 'web3modal';
 import { generateChallenge } from '../../components/lensAPI/generate-challenge';
 import { authenticate } from '../../components/lensAPI/authenticate';
 
-function Navbar({ walletAddress, setWalletAddress }) {
+function Navbar({ walletAddress, setWalletAddress, setUserSigner }) {
   const navigate = useNavigate();
 
   const connectWallet = async () => {
@@ -18,6 +18,8 @@ function Navbar({ walletAddress, setWalletAddress }) {
 
       const signer = provider.getSigner();
       console.log(signer);
+      setUserSigner(signer);
+
       const address = await signer.getAddress();
       console.log(address);
       setWalletAddress(address);

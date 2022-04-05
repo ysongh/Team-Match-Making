@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { explorePublications } from '../components/lensAPI/explore-publications';
-import { createPostTypedData } from '../components/lensAPI/create-post-typed-data';
+import { createPost } from '../components/lensAPI/create-post-typed-data';
 
-function Home() {
+function Home({ userSigner }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -21,27 +21,16 @@ function Home() {
     setPosts(_posts.data.explorePublications.items);
   }
 
-  const createPost = async() => {
-    const req = {
-      profileId: "0x0295",
-      contentURI: "ipfs://QmZJTaXfWxRVX33drEYHjKUksrahFdzgZ5pevd94sskLwn.json",
-      collectModule: {
-        emptyCollectModule: true
-      },
-      referenceModule: {
-        followerOnlyReferenceModule: false
-      }
-    }
-
-    const _newPost = await createPostTypedData(req);
-    console.log(_newPost);
+  const create = async() => {
+    const tx = await createPost(userSigner);
+    console.log(tx);
   }
 
   return (
     <div className='container'>
       <div className='d-flex justify-content-between mb-4'>
         <h1>List of Posts</h1>
-        <button className='btn btn-primary' onClick={createPost}>
+        <button className='btn btn-primary' onClick={create}>
           Create Post
         </button>
       </div>
