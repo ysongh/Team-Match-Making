@@ -25,13 +25,16 @@ function MyPosts() {
 
   return (
     <div className='container'>
+      <h1>Your Posts</h1>
       {posts.map(post => (
-        <div key={post.id}>
-          <h2>
+        <div className="card mb-3" key={post.id}>
+          <div className="card-header">
             {post.metadata.name}
-          </h2>
-          <p>{post.metadata.content}</p>
-          <p>{post.createdAt}</p>
+          </div>
+          <div className="card-body">
+            <h5 className="card-title">{post.createdAt}</h5>
+            <p className="card-text">{post.metadata.content}</p>
+          </div>
         </div>
       ))}
     </div>
