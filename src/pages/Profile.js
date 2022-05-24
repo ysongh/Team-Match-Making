@@ -5,6 +5,7 @@ import EditProfileForm from '../components/profile/EditProfileForm';
 import { createProfile } from '../components/lensAPI/create-profile';
 import { updateProfile } from '../components/lensAPI/update-profile';
 import { getProfiles } from '../components/lensAPI/get-profiles';
+import { getDefaultProfile } from '../components/lensAPI/get-default-profile';
 
 function Profile({ walletAddress }) {
   const [profile, setProfile] = useState({});
@@ -15,13 +16,15 @@ function Profile({ walletAddress }) {
   }, [walletAddress])
 
   const fetchProfiles = async() => {
-    const req = {
-      ownedBy: [walletAddress]
-    };
+    // const req = {
+    //   ownedBy: [walletAddress]
+    // };
 
-    const _profiles = await getProfiles(req);
-    console.log(_profiles);
-    setProfile(_profiles.data.profiles.items[0]);
+    // const _profiles = await getProfiles(req);
+    // console.log(_profiles);
+    // setProfile(_profiles.data.profiles.items[0]);
+    const _profile = await getDefaultProfile(walletAddress);
+    console.log(_profile);
   }
   
   const create = async (handle, profilePictureUri) => {
