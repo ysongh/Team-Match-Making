@@ -16,15 +16,15 @@ function Profile({ walletAddress }) {
   }, [walletAddress])
 
   const fetchProfiles = async() => {
-    // const req = {
-    //   ownedBy: [walletAddress]
-    // };
+    const req = {
+      ownedBy: walletAddress
+    };
 
-    // const _profiles = await getProfiles(req);
-    // console.log(_profiles);
-    // setProfile(_profiles.data.profiles.items[0]);
-    const _profile = await getDefaultProfile(walletAddress);
-    console.log(_profile);
+    const _profiles = await getProfiles(req);
+    console.log(_profiles);
+    setProfile(_profiles.data.profiles.items[0]);
+    // const _profile = await getDefaultProfile(walletAddress);
+    // console.log(_profile);
   }
   
   const create = async (handle, profilePictureUri) => {
