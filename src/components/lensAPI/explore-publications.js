@@ -24,21 +24,24 @@ const EXPLORE_PUBLICATIONS = `
       }
     }
   }
-
   fragment MediaFields on Media {
     url
     width
     height
     mimeType
   }
-
   fragment ProfileFields on Profile {
     id
     name
     bio
-    location
-    website
-    twitterUrl
+    attributes {
+      displayType
+      traitType
+      key
+      value
+    }
+    metadata
+    isDefault
     handle
     picture {
       ... on NftImage {
@@ -79,7 +82,7 @@ const EXPLORE_PUBLICATIONS = `
       }
     }
     ownedBy
-    depatcher {
+    dispatcher {
       address
     }
     stats {
@@ -105,15 +108,19 @@ const EXPLORE_PUBLICATIONS = `
         }
         recipient
       }
+      ... on ProfileFollowModuleSettings {
+        type
+      }
+      ... on RevertFollowModuleSettings {
+        type
+      }
     }
   }
-
   fragment PublicationStatsFields on PublicationStats { 
     totalAmountOfMirrors
     totalAmountOfCollects
     totalAmountOfComments
   }
-
   fragment MetadataOutputFields on MetadataOutput {
     name
     description
@@ -135,18 +142,18 @@ const EXPLORE_PUBLICATIONS = `
       value
     }
   }
-
   fragment Erc20Fields on Erc20 {
     name
     symbol
     decimals
     address
   }
-
   fragment CollectModuleFields on CollectModule {
     __typename
-    ... on EmptyCollectModuleSettings {
+    ... on FreeCollectModuleSettings {
       type
+      followerOnly
+      contractAddress
     }
     ... on FeeCollectModuleSettings {
       type
@@ -200,7 +207,6 @@ const EXPLORE_PUBLICATIONS = `
       endTimestamp
     }
   }
-
   fragment PostFields on Post {
     id
     profile {
@@ -223,7 +229,6 @@ const EXPLORE_PUBLICATIONS = `
     }
     appId
   }
-
   fragment MirrorBaseFields on Mirror {
     id
     profile {
@@ -246,7 +251,6 @@ const EXPLORE_PUBLICATIONS = `
     }
     appId
   }
-
   fragment MirrorFields on Mirror {
     ...MirrorBaseFields
     mirrorOf {
@@ -258,7 +262,6 @@ const EXPLORE_PUBLICATIONS = `
      }
     }
   }
-
   fragment CommentBaseFields on Comment {
     id
     profile {
@@ -281,7 +284,6 @@ const EXPLORE_PUBLICATIONS = `
     }
     appId
   }
-
   fragment CommentFields on Comment {
     ...CommentBaseFields
     mainPost {
@@ -301,7 +303,6 @@ const EXPLORE_PUBLICATIONS = `
       }
     }
   }
-
   fragment CommentMirrorOfFields on Comment {
     ...CommentBaseFields
     mainPost {
@@ -313,10 +314,10 @@ const EXPLORE_PUBLICATIONS = `
       }
     }
   }
-`
+`;
 
 export const explorePublications = (explorePublicationQueryRequest) => {
-   return apolloClient.query({
+  return apolloClient.query({
     query: gql(EXPLORE_PUBLICATIONS),
     variables: {
       request: explorePublicationQueryRequest
