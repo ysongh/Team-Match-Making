@@ -7,12 +7,12 @@ function Home({ userSigner }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts("TOP_COMMENTED");
   }, [])
 
-  const fetchPosts = async() => {
+  const fetchPosts = async(postType) => {
     const req = {
-      "sortCriteria": "TOP_COLLECTED",
+      "sortCriteria": postType,
       "limit": 10
     };
 
@@ -28,8 +28,13 @@ function Home({ userSigner }) {
 
   return (
     <div className='container'>
-      <div className='d-flex justify-content-between mb-4'>
+      <div className='d-flex justify-content-between align-items-center mb-4'>
         <h1>List of Posts</h1>
+        <select className="form-select" aria-label="Default select example" style={{ maxWidth: '20rem'}} onChange={(e) => fetchPosts(e.target.value)}>
+          <option selected value="TOP_COMMENTED">Fetch by Top Commented</option>
+          <option value="TOP_COLLECTED">Fetch by Top Collected</option>
+          <option value="LATEST">Fetch by Latest</option>
+        </select>
         <button className='btn btn-primary' onClick={create}>
           Create Post
         </button>
