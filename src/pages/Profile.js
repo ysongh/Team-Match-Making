@@ -7,7 +7,7 @@ import { updateProfile } from '../components/lensAPI/update-profile';
 import { getProfiles } from '../components/lensAPI/get-profiles';
 import { getDefaultProfile } from '../components/lensAPI/get-default-profile';
 
-function Profile({ walletAddress }) {
+function Profile({ walletAddress, setProfileId }) {
   const [profile, setProfile] = useState({});
   const [isEdit, setIsEdit] = useState(false);
 
@@ -23,6 +23,7 @@ function Profile({ walletAddress }) {
     const _profiles = await getProfiles(req);
     console.log(_profiles);
     setProfile(_profiles.data.profiles.items[0]);
+    setProfileId(_profiles.data.profiles.items[0].id);
     // const _profile = await getDefaultProfile(walletAddress);
     // console.log(_profile);
   }

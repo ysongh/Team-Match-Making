@@ -7,6 +7,7 @@ import MyPosts from './pages/MyPosts';
 import Profile from './pages/Profile';
 
 function App() {
+  const [profileId, setProfileId] = useState('');
   const [walletAddress, setWalletAddress] = useState('');
   const [userSigner, setUserSigner] = useState(null);
 
@@ -14,6 +15,7 @@ function App() {
      <HashRouter>
       <Navbar
         walletAddress={walletAddress}
+        profileId={profileId}
         setWalletAddress={setWalletAddress}
         setUserSigner={setUserSigner} />
       <Routes>
@@ -24,7 +26,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Profile walletAddress={walletAddress} />} />
+            <Profile walletAddress={walletAddress} setProfileId={setProfileId} />} />
         <Route
           path="/"
           element={

@@ -6,7 +6,7 @@ import Web3Modal from 'web3modal';
 import { generateChallenge } from '../../components/lensAPI/generate-challenge';
 import { authenticate } from '../../components/lensAPI/authenticate';
 
-function Navbar({ walletAddress, setWalletAddress, setUserSigner }) {
+function Navbar({ profileId, walletAddress, setWalletAddress, setUserSigner }) {
   const navigate = useNavigate();
 
   const connectWallet = async () => {
@@ -56,6 +56,7 @@ function Navbar({ walletAddress, setWalletAddress, setUserSigner }) {
               <Link className="nav-link" aria-current="page" to="/profile">Profile</Link>
             </li>}
           </ul>
+          <p className='mt-3 me-3'>{profileId}</p>
           <button className="btn btn-outline-success" type="submit"  onClick={connectWallet}>
             {walletAddress ? walletAddress.substring(0,8) + "..." + walletAddress.substring(34,42) : "Connect to Wallet"}
           </button>
