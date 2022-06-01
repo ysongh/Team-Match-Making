@@ -30,7 +30,9 @@ function App() {
         <Route
           path="/"
           element={
-            <Home userSigner={userSigner} />} />
+            <Home
+              userSigner={userSigner}
+              profileId={profileId} />} />
       </Routes>
     </HashRouter>
   );

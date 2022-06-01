@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { explorePublications } from '../components/lensAPI/explore-publications';
 import { createPost } from '../components/lensAPI/create-post-typed-data';
 
-function Home({ userSigner }) {
+function Home({ userSigner, profileId }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function Home({ userSigner }) {
   }
 
   const create = async() => {
-    const tx = await createPost(userSigner);
+    const tx = await createPost(userSigner, profileId);
     console.log(tx);
   }
 

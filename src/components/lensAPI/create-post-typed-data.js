@@ -31,11 +31,11 @@ const CREATE_POST_TYPED_DATA = `
         profileId
         contentURI
         collectModule
-        collectModuleData
+        collectModuleInitData
         referenceModule
-        referenceModuleData
+        referenceModuleInitData
       }
-     }
+    }
    }
  }
 `
@@ -49,7 +49,7 @@ export const createPostTypedData = (createPostTypedDataRequest) => {
   })
 }
 
-export const createPost = async (signer) => {
+export const createPost = async (signer, profileId) => {
   const signedTypeData = async (domain, types, value) => {
     return await signer._signTypedData(
       omit(domain, '__typename'),
@@ -59,7 +59,7 @@ export const createPost = async (signer) => {
   };
 
   const createPostRequest = {
-    profileId: "0x0295",
+    profileId: profileId,
     contentURI: "ipfs://QmZJTaXfWxRVX33drEYHjKUksrahFdzgZ5pevd94sskLwn.json",
     collectModule: {
       // For more info about post modules:
