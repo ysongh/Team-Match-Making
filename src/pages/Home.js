@@ -5,20 +5,31 @@ import { createPost } from '../components/lensAPI/create-post-typed-data';
 
 function Home({ userSigner, profileId }) {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchPosts("TOP_COMMENTED");
   }, [])
 
   const fetchPosts = async(postType) => {
-    const req = {
-      "sortCriteria": postType,
-      "limit": 10
-    };
+    try{
+      setLoading(true);
 
-    const _posts = await explorePublications(req);
-    console.log(_posts);
-    setPosts(_posts.data.explorePublications.items);
+      const req = {
+        "sortCriteria": postType,
+        "limit": 10
+      };
+  
+      const _posts = await explorePublications(req);
+      console.log(_posts);
+      setPosts(_posts.data.explorePublications.items);
+
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+    
   }
 
   const create = async() => {
@@ -39,7 +50,9 @@ function Home({ userSigner, profileId }) {
           Create Post
         </button>
       </div>
-      {posts.map(post => (
+      {loading
+        ? <p>Loading...</p>
+        : posts.map(post => (
         <div className="card mb-3" key={post.id}>
           <div className="card-header">
             {post.metadata.name}
